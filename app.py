@@ -117,11 +117,15 @@ def main():
 
     st.sidebar.title("TeachMe ChatBot 📚")
     
-    # Thêm trường nhập API URL
-    api_url = st.sidebar.text_input("Nhập API URL:", value=st.session_state.api_url)
-    if api_url != st.session_state.api_url:
-        st.session_state.api_url = api_url
-        st.rerun()
+    # Thêm trường nhập API URL và nút Submit
+    col1, col2 = st.sidebar.columns([3, 1])
+    with col1:
+        api_url = st.text_input("Nhập API URL:", value=st.session_state.api_url)
+    with col2:
+        if st.button("✔️"):
+            if api_url != st.session_state.api_url:
+                st.session_state.api_url = api_url
+                st.rerun()
 
     page = st.sidebar.radio("Chọn vai trò:", ["Student", "Tutor"])
 
